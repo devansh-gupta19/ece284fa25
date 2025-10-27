@@ -10,7 +10,6 @@ input signed [bw-1:0] b;
 // c stores previous sum
 input signed [psum_bw-1:0] c;
 
-reg signed [psum_bw-1:0] psum_q;
 output signed [psum_bw-1:0] out;
 
 assign out = c + (b * $signed({1'b0, a}));
