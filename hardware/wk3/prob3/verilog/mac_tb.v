@@ -62,17 +62,23 @@ endfunction
 
 
 function [3:0] x_bin ;
-
-...
+	input integer activation;
+	begin
+		x_bin = activation;
+	end
 
 endfunction
 
 
 // Below function is for verification
 function [psum_bw-1:0] mac_predicted;
-  
-...
+  input unsigned [bw-1:0] unsign_inp;
+  input signed [bw-1:0] sign_inp;
+  input signed [psum_bw-1:0] prev_sum;
+  begin
+	mac_predicted = prev_sum + (sign_inp * $signed({1'b0, unsign_inp}));
 
+end
 endfunction
 
 

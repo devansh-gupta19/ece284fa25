@@ -5,6 +5,14 @@ module mac (out, a, b, c);
 parameter bw = 4;
 parameter psum_bw = 16;
 
-...
+input unsigned [bw-1:0] a;
+input signed [bw-1:0] b;
+// c stores previous sum
+input signed [psum_bw-1:0] c;
+
+reg signed [psum_bw-1:0] psum_q;
+output signed [psum_bw-1:0] out;
+
+assign out = c + (b * $signed({1'b0, a}));
 
 endmodule
