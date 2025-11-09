@@ -14,8 +14,21 @@ input  [psum_bw-1:0] in_n;
 input  clk;
 input  reset;
 
-...
-...
+reg [1:0] inst_q;
+reg [bw-1] a_q;
+reg [bw-1] b_q;
+reg [bw-1] c_q;
+reg load_ready_q;
+
+assign out_e = a_q;
+assign inst_e = inst_q;
+
+always @ (posedge clk) begin
+	if (reset == 1) begin
+		load_ready_q <= 1;
+		inst_q <= 0;
+	end
+end
 
 mac #(.bw(bw), .psum_bw(psum_bw)) mac_instance (
         .a(a_q), 
